@@ -13,7 +13,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  user = new User('','')
+  user = new User('','','','')
 
   submitted = false;
 
