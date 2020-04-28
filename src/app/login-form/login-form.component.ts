@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
-import { ConfigService } from '../config.service';
+import { ConfigService } from './config.service';
+
 
 @Component({
   selector: 'app-login-form',
@@ -19,11 +20,17 @@ export class LoginFormComponent implements OnInit {
   onSubmit() { 
     
     this.submitted = true; 
-    this.configService.getConfig(this.user);
+    console.log(this.user);
 
   }
 
   get diagnostic() { return JSON.stringify(this.user); }
 
+  showConfig(user:User) {
+    this.configService.getConfig(this.user)
+      .subscribe( res => {
+        console.log(res)});;
+
   
+}
 }
