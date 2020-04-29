@@ -10,6 +10,8 @@ import { HeaderComponent } from './header/header.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { AppRoutingModule } from './app-routing.module';
+import { UsersComponent } from './users/users.component';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     HeaderComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

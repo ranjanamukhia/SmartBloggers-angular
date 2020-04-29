@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry} from 'rxjs/operators';
 import { LoginFormComponent } from './login-form.component';
@@ -18,11 +18,12 @@ export class ConfigService {
   
  
   getConfig(user:User): Observable<any> {
+    let params = new HttpParams();
     var header = {
       headers: new HttpHeaders()
         .set('Authorization',  `Basic ${btoa(user.userName+':'+user.password)}`)
     }
     
-    return this.http.get<any>('/SmartBloggers/rest/users/'+user.userName, header);
+    return this.http.get<any>('/SmartBloggers/rest/users/'+ user.userName,header);
 }
 }

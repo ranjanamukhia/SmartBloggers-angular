@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { RegsiterService } from './regsiter.service';
+
+
 
 @Component({
   selector: 'app-register-form',
@@ -9,8 +14,10 @@ import { RegsiterService } from './regsiter.service';
 })
 export class RegisterFormComponent implements OnInit {
   user = new User('','','','')
+  users : User[]
+  
 
-  constructor(private regsiterService : RegsiterService) { }
+  constructor(private registerService : RegsiterService) { }
 
   ngOnInit(): void {
   }
@@ -26,10 +33,17 @@ export class RegisterFormComponent implements OnInit {
 
   get diagnostic() { return JSON.stringify(this.user); }
 
-  register(user:User) {
-    this.regsiterService.regsiter(this.user)
-      .subscribe( res => {
-        console.log(res)});;
+  register(user:User){
 
-}
+    this.registerService.register(this.user).subscribe(user =>this.users.push(user))
+
+  }
+
+  
+  
+    
+
+
+  
+  
 }
