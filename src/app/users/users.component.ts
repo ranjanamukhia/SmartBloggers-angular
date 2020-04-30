@@ -11,19 +11,41 @@ import { catchError, retry, map, tap} from 'rxjs/operators';
 })
 export class UsersComponent implements OnInit {
 
-  users:User[]
+  user = new User('','','','','')
+  loadedUsers:User[] =[]
+  isgettingUsers = false;
+  error = null;
+  
+  
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
-getUsers(){
-  this.http.get<any>('/SmartBloggers/rest/users')
-  .pipe(
-    map(response => response.data),
-    tap(users => console.log("users array", users))
-  )
-  .subscribe( users => this.users = users);
-    console.log("in users.ts");
-  }
+
+
+  showUsers(){
+    this.isgettingUsers = true;
+
+    this.http.get<{[key:string] : User}>('https://smartbloggers-7101f.firebaseio.com/users.json')
+    .pipe(
+      map(responseData =>{
+        const userArray: User[]=[];
+        for (const key in responseData){
+          if(responseData.hasOwnProperty(key)){
+            userArray.push({...responseData[key], id : key});
+          }
+        }
+        return userArray;
+      })
+    ).subscribe(users=>{
+      this.isgettingUsers = false;
+      this.loadedUsers = users
+      console.log(users);
+    },error =>{
+      this.error = error.message;
+      console.log(error);
+    });
+  
+}
 }

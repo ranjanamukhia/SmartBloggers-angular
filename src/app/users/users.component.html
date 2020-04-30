@@ -1,1 +1,21 @@
-<p>users works!</p>
+<div class="card" style="width: 18rem;">
+  <h3>All Users</h3>
+<button type="button" class="btn btn-primary btn" (click) = showUsers()>Click to see Users</button>
+<p *ngIf="loadedUsers.length < 1 && !isgettingUsers">No users Vailable </p>
+<div class="card-body">
+<ul class="list-group" *ngIf="loadedUsers.length >= 1 && !isgettingUsers">
+    <li class="list-group-item" *ngFor="let user of loadedUsers">
+        <p>{{ user.userName }}</p>
+        <p>{{ user.emailId }}</p>
+
+
+    </li>
+    
+  </ul>
+  <p *ngIf="isgettingUsers && !error"> Loading.....</p>
+  <div class="alert alert-danger" *ngIf="error" role="alert">
+  <h1>An error occured</h1>
+  <p>{{ error }}</p>
+  </div>
+</div>
+</div>

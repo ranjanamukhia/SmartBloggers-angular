@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
-import { ConfigService } from './config.service';
+
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 
 @Component({
@@ -9,11 +10,11 @@ import { ConfigService } from './config.service';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-  constructor(private configService : ConfigService) { }
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
   }
-  user = new User('','','','')
+  user = new User('','','','','')
 
   submitted = false;
 
@@ -27,9 +28,17 @@ export class LoginFormComponent implements OnInit {
   get diagnostic() { return JSON.stringify(this.user); }
 
   showConfig(user:User) {
-    this.configService.getConfig(this.user)
-      .subscribe( res => {
-        console.log(res)});;
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('userName', user.userName);
+    params.set('password', user.password);
+
+    
+
+    this.http.get<User>('https://smartbloggers-7101f.firebaseio.com/users.json')
+    .subscribe(responseData =>{
+      console.log(responseData);
+    } );
+   
 
   
 }

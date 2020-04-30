@@ -1,7 +1,7 @@
 <div class="container">
     <h1>Register Form</h1>
     <form  (ngSubmit)="register(user)" #userForm="ngForm">
-        {{diagnostic}}
+        
       <div class="form-group">
         <label for="userName">Username</label>
         <input type="text" class="form-control" id="userName" required [(ngModel)]="user.userName" 
