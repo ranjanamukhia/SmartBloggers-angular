@@ -1,7 +1,9 @@
 <nav class="navbar navbar-light bg-primary">
   <a class="navbar-brand" href="#"><h3 [style.color]="'white'">Smart Bloggers</h3></a>
   <span class="example-spacer"></span>
-  <a class="btn btn-primary" href="login" role="button">Login</a>
-  <a class="btn btn-primary" href="register" role="button">Register</a>
-  <a class="btn btn-primary" href="users" role="button">All Users</a>
+  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/login" >Login</a>
+  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/register">Register</a>
+  <a class="btn btn-primary"routerLinkActive="active" role="button"  routerLink="/users">All Users</a>
+  <a class="btn btn-primary"routerLinkActive="active" role="button"  routerLink="/auth">Authentication</a>
+
 </nav>

@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SmartBloggers';
+
+  email: string;
+  password: string;
+
+  constructor() {}
+
+  
 }

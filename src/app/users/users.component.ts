@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, map, tap} from 'rxjs/operators';
 
@@ -27,7 +27,11 @@ export class UsersComponent implements OnInit {
   showUsers(){
     this.isgettingUsers = true;
 
-    this.http.get<{[key:string] : User}>('https://smartbloggers-7101f.firebaseio.com/users.json')
+    this.http.get<{[key:string] : User}>('https://smartbloggers-7101f.firebaseio.com/users.json',
+    {
+      headers: new HttpHeaders({ 'Custom-Header' : 'Hello' }),
+      params: new HttpParams().set('print','pretty')
+    })
     .pipe(
       map(responseData =>{
         const userArray: User[]=[];
@@ -43,9 +47,14 @@ export class UsersComponent implements OnInit {
       this.loadedUsers = users
       console.log(users);
     },error =>{
+      this.isgettingUsers = false;
       this.error = error.message;
       console.log(error);
     });
   
+}
+
+onHandleError(){
+  this.error = null;
 }
 }

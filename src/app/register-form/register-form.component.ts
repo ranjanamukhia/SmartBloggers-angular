@@ -15,6 +15,7 @@ import { catchError } from 'rxjs/operators';
 export class RegisterFormComponent implements OnInit {
   user = new User('','','','','')
   users : User[]
+  error = null;
   
 
   constructor(private http:HttpClient) { }
@@ -25,16 +26,21 @@ export class RegisterFormComponent implements OnInit {
   
 
   register(user:User){
-
     console.log(user);
     this.http.post<User>('https://smartbloggers-7101f.firebaseio.com/users.json',user)
     .subscribe(responseData =>{
       console.log(responseData);
+    },error =>{
+     
+      this.error = error.message;
+      console.log(error);
     });
 
   }
 
-  
+  onHandleError(){
+    this.error = null;
+  }
   
     
 

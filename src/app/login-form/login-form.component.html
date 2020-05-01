@@ -15,6 +15,11 @@
       </div>
       
       <button type="submit" class="btn btn-success">Submit</button>
+      <div class="alert alert-danger" *ngIf="error" role="alert">
+        <h1>An error occured</h1>
+        <p>{{ error }}</p>
+        <button class="btn btn-danger" (click)="onHandleError()">Okay</button>
+        </div>
 
     </form>
 </div>

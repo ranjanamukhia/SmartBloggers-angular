@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { environment } from '../environments/environment';
+
 
 
 import { AppComponent } from './app.component';
@@ -11,6 +15,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UsersComponent } from './users/users.component';
+import { AuthComponent } from './auth/auth.component';
 
 
 
@@ -20,15 +25,19 @@ import { UsersComponent } from './users/users.component';
     HeaderComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    UsersComponent
+    UsersComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
+   
   ],
-  providers:[],
+  providers:[ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
