@@ -16,6 +16,9 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UsersComponent } from './users/users.component';
 import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+
+
 
 
 
@@ -26,7 +29,8 @@ import { AuthComponent } from './auth/auth.component';
     LoginFormComponent,
     RegisterFormComponent,
     UsersComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

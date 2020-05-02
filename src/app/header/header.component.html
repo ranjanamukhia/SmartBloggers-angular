@@ -1,9 +1,16 @@
 <nav class="navbar navbar-light bg-primary">
   <a class="navbar-brand" href="#"><h3 [style.color]="'white'">Smart Bloggers</h3></a>
   <span class="example-spacer"></span>
-  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/login" >Login</a>
-  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/register">Register</a>
-  <a class="btn btn-primary"routerLinkActive="active" role="button"  routerLink="/users">All Users</a>
-  <a class="btn btn-primary"routerLinkActive="active" role="button"  routerLink="/auth">Authentication</a>
-
+ <!-- <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/login" >Login</a> -->
+ <!-- <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/register">Register</a> -->
+  <a class="btn btn-primary"routerLinkActive="active" role="button"  routerLink="/users" *ngIf="isAuthenticated">All Users</a>
+  <a class="btn btn-primary"routerLinkActive="active" role="button"  routerLink="/auth" *ngIf="!isAuthenticated">Authentication</a>
+  <a class="btn btn-primary"
+  routerLinkActive="active"
+   role="button"  
+   routerLink="/auth" 
+   style="cursor: pointer;"
+   *ngIf="isAuthenticated"
+   >Logout
+  </a>
 </nav>
