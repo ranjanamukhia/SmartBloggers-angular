@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from '../environments/environment';
 
 
@@ -15,8 +13,10 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UsersComponent } from './users/users.component';
-import { AuthComponent } from './auth/auth.component';
+
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { ShowBlogsComponent } from './showblogs/showblogs.component';
+import { AddblogComponent } from './addblog/addblog.component';
 
 
 
@@ -29,16 +29,16 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     LoginFormComponent,
     RegisterFormComponent,
     UsersComponent,
-    AuthComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ShowBlogsComponent,
+    AddblogComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+   
    
   ],
   providers:[ ],

@@ -36,11 +36,7 @@ export class LoginFormComponent implements OnInit {
     
 
     this.http.get<User>('https://smartbloggers-7101f.firebaseio.com/users.json',
-    {
-      params: new HttpParams().set('auth',user.userName+':'+user.password)
-    }
-    
-    
+  
     )
     .subscribe(responseData =>{
       console.log(responseData);

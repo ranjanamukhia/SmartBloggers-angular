@@ -1,0 +1,48 @@
+<div style="clear: left"></div>
+	<div style="clear: left"></div>
+	
+	<form (ngSubmit)="onSubmit()" #f="ngForm">
+		<div class="well well-lg" style="width: 90%">
+
+			<div class="form-group">
+                <label for="title">Title</label>
+                <input
+                 type="text"
+                class="form-control"
+				 minlength="5"
+				 ngModel
+				 name="title"
+				placeholder="Title..."
+				#title = "ngModel"
+				required>
+			</div>
+			<div class="form-group">
+				<label for="Tag">Tag</label> 
+                <input
+                 type="text" 
+				 minlength="5" 
+				class="form-control"
+				ngModel
+				name="tag"
+            
+				placeholder="tag..." 
+				#tag = "ngModel"
+
+				required/>
+				<span class="help-block" *ngIf="!tag.valid">Please enter a valid value</span>
+			</div>
+			<div class="form-group">
+				<label for="Description">Description</label>
+				<textarea 
+				class="form-control"
+                 rows="5" 
+            	minlength="5" 
+				placeholder="Description..."
+				ngModel
+				name="description"
+				#description = "ngModel"></textarea>
+				
+			</div>
+			<button class="btn btn-primary" type="submit" [disabled]="!f.valid">Add</button>
+			<button class="btn btn-primary">Cancel</button>
+			
