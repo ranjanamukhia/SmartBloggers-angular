@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Blog } from '../blog';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-addblog',
@@ -16,7 +20,8 @@ export class AddblogComponent implements OnInit {
 
   };
   submitted = false;
-  constructor() { }
+  error= null;
+  constructor(private http : HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -30,12 +35,22 @@ export class AddblogComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
     
+    
     this.blog.userName = this.blogForm.value.userName;
     this.blog.tag = this.blogForm.value.tag;
-    this.blog.blogName = this.blogForm.value.blogName;
-    this.blog.content = this.blogForm.value.content;
+    this.blog.blogName = this.blogForm.value.title;
+    this.blog.content = this.blogForm.value.description;
 
     console.log(this.blog)
+
+    this.http.post<Blog>('https://smartbloggers-7101f.firebaseio.com/blogs.json',this.blog)
+    .subscribe(responseData =>{
+      console.log(responseData);
+    },error =>{
+     
+      this.error = error.message;
+      console.log(error);
+    });
   }
 
 }

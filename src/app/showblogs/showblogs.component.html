@@ -1,35 +1,18 @@
-<div class="container page-header">
+<div class="card" style="width: 18rem;">
     <h3>All Blogs</h3>
-</div>
-<div class="container">
-    <ul *ngFor="let blog of blogs">
-        <div class="row">
-            <div class="col-xs-12">
-                 <li>{{blog.blogName}}</li> 
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-xs-12">
-                 <li> {{blog.tag}}</li>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <li>{{blog.content}}</li>  
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <li>{{blog.userName}}</li>   
-            </div>
-        </div>  
-     </ul>
-                           
-</div>
-
-
-
-
-       
+  <button type="button" class="btn btn-primary btn" (click) = showBlogs()>Click to see Blogs</button>
   
+  <div class="card-body">
+  <ul >
+    <li class="list-group-item" *ngFor="let blog of loadedBlogs">
+          <p><b>Blog Name :</b> {{ blog.blogName }}</p>
+          <p><b>Description :</b> {{ blog.content }}</p>
+  
+  
+      </li>
+      
+    </ul>
+    
+    
+  </div>
+  </div>

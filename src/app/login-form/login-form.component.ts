@@ -35,9 +35,7 @@ export class LoginFormComponent implements OnInit {
 
     
 
-    this.http.get<User>('https://smartbloggers-7101f.firebaseio.com/users.json',
-  
-    )
+    this.http.get<User>('https://smartbloggers-7101f.firebaseio.com/users.json')
     .subscribe(responseData =>{
       console.log(responseData);
     },error =>{
