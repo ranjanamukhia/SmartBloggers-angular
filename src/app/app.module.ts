@@ -4,6 +4,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { environment } from '../environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -41,7 +42,7 @@ import { AddblogComponent } from './addblog/addblog.component';
    
    
   ],
-  providers:[ ],
+  providers:[ CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

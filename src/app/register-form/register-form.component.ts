@@ -13,7 +13,7 @@ import { catchError } from 'rxjs/operators';
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent implements OnInit {
-  user = new User('','','','','')
+  user = new User('','','','')
   users : User[]
   error = null;
   
@@ -23,11 +23,20 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+  httpOptionsWithAuth = {
+    headers: new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Basic dW46dW4='
+    })};
+
+    httpOptionsWithOutAuth = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json','Accept': 'application/json'})};
+
 
   register(user:User){
     console.log(user);
-    this.http.post<User>('https://smartbloggers-7101f.firebaseio.com/users.json',user)
+    this.http.post<User>('/SmartBloggers/rest/users/',user,this.httpOptionsWithOutAuth)
     .subscribe(responseData =>{
       console.log(responseData);
     },error =>{

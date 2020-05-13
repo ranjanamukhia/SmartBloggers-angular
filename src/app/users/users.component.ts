@@ -11,7 +11,7 @@ import { catchError, retry, map, tap} from 'rxjs/operators';
 })
 export class UsersComponent implements OnInit {
 
-  user = new User('','','','','')
+  user = new User('','','','')
   loadedUsers:User[] =[]
   isgettingUsers = false;
   error = null;
@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
         const userArray: User[]=[];
         for (const key in responseData){
           if(responseData.hasOwnProperty(key)){
-            userArray.push({...responseData[key], id : key});
+            userArray.push({...responseData[key], emailId : key});
           }
         }
         return userArray;

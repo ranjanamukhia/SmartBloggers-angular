@@ -11,11 +11,12 @@ import { AddblogComponent } from './addblog/addblog.component';
     
 
 const routes: Routes = [
-  { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegisterFormComponent },
+  { path: 'login', component: LoginFormComponent },
+  { path : 'showblogs', component: ShowBlogsComponent}, 
   { path: 'users', component: UsersComponent },
   { path : 'blog', component: AddblogComponent},
-  { path : 'showblogs', component: ShowBlogsComponent},
+
   { path: '', component: LoginFormComponent },
 ];
 
