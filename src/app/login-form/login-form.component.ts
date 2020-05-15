@@ -5,6 +5,7 @@ import { HttpClient, HttpParams,HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { ShowBlogsComponent } from '../showblogs/showblogs.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,11 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-  constructor(private http:HttpClient,private cookieService:CookieService) { }
+  private cookieValue_login_info: string;
+  private cookieValue_current_user: string;
+  isLoggedIn: boolean = false; 
+  public redirectUrl: string;
+  constructor(private http:HttpClient,private cookieService:CookieService,private location:Location,private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +28,7 @@ export class LoginFormComponent implements OnInit {
   error = null;
   private login_info : string;
   private current_user : string;
-  location: Location;
+  
 
   onSubmit() { 
     
@@ -41,6 +46,7 @@ export class LoginFormComponent implements OnInit {
 
 
   showConfig(user:User) {
+    
 
     let httpOptionsWithAuth = {
       headers: new HttpHeaders({ 
@@ -57,11 +63,15 @@ export class LoginFormComponent implements OnInit {
       let current_user : string;
       console.log(responseData);
       console.log("Login successfull");
-      localStorage.setItem(login_info,JSON.stringify(responseData));
-      localStorage.setItem(current_user,responseData.userName);
-      console.log(login_info);
-      console.log(current_user);
-      console.log(this.location);
+      this.isLoggedIn = true; 
+     this.cookieService.set('login_info',JSON.stringify(responseData));
+     this.cookieService.set('current_user',responseData.userName);
+     this.cookieValue_login_info = this.cookieService.get('login_info');
+     this.cookieValue_current_user = this.cookieService.get('current_user');
+     this.router.navigate(['showblogs']);
+
+
+      
 
 
     },error =>{

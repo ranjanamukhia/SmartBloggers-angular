@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -39,6 +39,7 @@ import { AddblogComponent } from './addblog/addblog.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    
    
    
   ],

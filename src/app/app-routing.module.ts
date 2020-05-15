@@ -8,7 +8,6 @@ import { ShowBlogsComponent } from './showblogs/showblogs.component';
 import { AddblogComponent } from './addblog/addblog.component';
 
 
-    
 
 const routes: Routes = [
   { path: 'register', component: RegisterFormComponent },
