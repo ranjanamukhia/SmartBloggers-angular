@@ -18,6 +18,10 @@ import { UsersComponent } from './users/users.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { ShowBlogsComponent } from './showblogs/showblogs.component';
 import { AddblogComponent } from './addblog/addblog.component';
+import { AuthGuardService } from './auth.guard.service';
+import { AuthService } from './auth.service';
+import { LogoutComponent } from './logout/logout.component';
+
 
 
 
@@ -32,7 +36,8 @@ import { AddblogComponent } from './addblog/addblog.component';
     UsersComponent,
     LoadingSpinnerComponent,
     ShowBlogsComponent,
-    AddblogComponent
+    AddblogComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,7 @@ import { AddblogComponent } from './addblog/addblog.component';
    
    
   ],
-  providers:[ CookieService],
+  providers:[ CookieService,AuthGuardService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

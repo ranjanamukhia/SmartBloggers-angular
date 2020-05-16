@@ -3,6 +3,7 @@ import { User } from '../user';
 import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { AuthService, AuthResponseData } from '../auth.service';
 
 
 
@@ -16,42 +17,42 @@ export class RegisterFormComponent implements OnInit {
   user = new User('','','','')
   users : User[]
   error = null;
-  
+  isLoading = false;
+  authObs: Observable<User>;
 
-  constructor(private http:HttpClient) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  httpOptionsWithAuth = {
-    headers: new HttpHeaders({ 
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Basic dW46dW4='
-    })};
-
-    httpOptionsWithOutAuth = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json','Accept': 'application/json'})};
-
+  
+  
 
   register(user:User){
     console.log(user);
-    this.http.post<User>('/SmartBloggers/rest/users/',user,this.httpOptionsWithOutAuth)
-    .subscribe(responseData =>{
-      console.log(responseData);
-    },error =>{
-     
-      this.error = error.message;
-      console.log(error);
-    });
-
-  }
-
-  onHandleError(){
-    this.error = null;
-  }
-  
+    console.log("user in register-form-component");
+    this.authObs = this.authService.register(user);
+    this.authObs.subscribe(
+      resData => {
+        this.isLoading = false;
+        console.log("Regsiter Succeessfull");
+      }
+    ),
+    errorMessage => {
+      console.log(errorMessage);
+      console.log("errormessage");
+      this.error = errorMessage;
+      this.isLoading = false;
+    }
     
+
+  }
+
+  
+  
+    onHandleError(){
+      console.log(this.error);
+    }
 
 
   

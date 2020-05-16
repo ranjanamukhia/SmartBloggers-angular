@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,17 @@ export class AppComponent {
   email: string;
   password: string;
 
-  constructor() {}
+
+
+  currentUser: string;
+
+    constructor(
+        private router: Router,
+        private authService: AuthService
+    ) {
+       this.currentUser = this.authService.currentUser;
+        console.log(this.authService.currentUser+"current_user in app component")
+    }
 
   
 }
