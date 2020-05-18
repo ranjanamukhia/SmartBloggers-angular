@@ -3,6 +3,8 @@ import { Blog } from '../blog';
 import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, map, tap} from 'rxjs/operators';
+import { AuthService } from '../auth.service';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-showblogs',
   templateUrl: './showblogs.component.html',
@@ -14,7 +16,7 @@ export class ShowBlogsComponent implements OnInit {
   loadedBlogs:Blog[] =[]
   isgettingBlogs = false;
   error = null;
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,private authService:AuthService,private cookieService :CookieService) { }
   ngOnInit(): void {
   }
 
@@ -22,12 +24,14 @@ export class ShowBlogsComponent implements OnInit {
   showBlogs()
   {
     this.isgettingBlogs = true;
+    let httpOptionsWithAuth = {
+      headers: new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Basic '+ localStorage.getItem('login_info')
+    })};
 
-    this.http.get<{[key:string] : Blog}>('https://smartbloggers-7101f.firebaseio.com/blogs.json',
-    {
-      headers: new HttpHeaders({ 'Custom-Header' : 'Hello' }),
-      params: new HttpParams().set('print','pretty')
-    })
+    this.http.get<Blog>('/SmartBloggers/rest/blogs',httpOptionsWithAuth)
     .pipe(
       map(responseData =>{
         const blogArray: Blog[]=[];

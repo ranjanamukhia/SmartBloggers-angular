@@ -35,15 +35,13 @@ const routes: Routes = [
 // ];
 
 
-{ path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginFormComponent},
-   { path: 'register', component: RegisterFormComponent },
+    { path: 'login', component: LoginFormComponent},
+    { path: 'register', component: RegisterFormComponent },
     { path: 'showblogs', component: ShowBlogsComponent },
     { path: 'users', component: UsersComponent },
     { path: 'blog', component: AddblogComponent },
     { path: 'logout', component: LogoutComponent },
-
- 
+    { path: '', redirectTo: 'register', pathMatch: 'full'}, 
 ];
 
 

@@ -1,12 +1,10 @@
 <div class="container">
     <h1>Login Form</h1>
-    <form  (ngSubmit)="showConfig(user)" #userForm="ngForm">
-        {{diagnostic}}
+    <form  (ngSubmit)="login(user)" #userForm="ngForm">
       <div class="form-group">
         <label for="userName">Username</label>
         <input type="text" class="form-control" id="userName" required [(ngModel)]="user.userName" 
         name="username">
-        TODO: remove this: {{user.userName}}
       </div>
 
       <div class="form-group">

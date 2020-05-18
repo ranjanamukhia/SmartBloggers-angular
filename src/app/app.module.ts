@@ -22,11 +22,6 @@ import { AuthGuardService } from './auth.guard.service';
 import { AuthService } from './auth.service';
 import { LogoutComponent } from './logout/logout.component';
 
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,12 +38,9 @@ import { LogoutComponent } from './logout/logout.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule,
-    
-   
-   
+    AppRoutingModule
   ],
-  providers:[ CookieService,AuthGuardService,AuthService],
+  providers:[ CookieService,AuthGuardService,AuthService,LoginFormComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

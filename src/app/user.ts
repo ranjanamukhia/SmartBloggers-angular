@@ -5,6 +5,7 @@ export class User {
         public fullName : string,
         public emailId : string,
         public password: string,
+        public blogs : string
         
       ) {  }
 }

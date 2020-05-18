@@ -11,7 +11,7 @@ import { catchError, retry, map, tap} from 'rxjs/operators';
 })
 export class UsersComponent implements OnInit {
 
-  user = new User('','','','')
+  user = new User('','','','','')
   loadedUsers:User[] =[]
   isgettingUsers = false;
   error = null;

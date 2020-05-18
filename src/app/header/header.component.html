@@ -1,10 +1,13 @@
 <nav class="navbar navbar-light bg-primary">
   <a class="navbar-brand" href="#"><h3 [style.color]="'white'">Smart Bloggers</h3></a>
   <span class="example-spacer"></span>
-  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/login" >Login</a>
-  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/register">Register</a> 
-  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/users">Users</a> 
-  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/blog">AddBlog</a> 
-  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/showblogs">All Blogs</a> 
-  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/logout">Logout</a>
+  <a class="btn btn-primary" routerLinkActive="active" role="button" (click)="setCurrentUser()" routerLink="/login" *ngIf="!currentUser">
+    Login 
+  </a>
+  <a>{{currentUser}}</a>
+  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/register" *ngIf="!currentUser">Register</a> 
+  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/users" *ngIf="currentUser">Users</a> 
+  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/blog" *ngIf="currentUser">AddBlog</a> 
+  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/showblogs" *ngIf="currentUser">All Blogs</a> 
+  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/logout" *ngIf="currentUser">Logout</a>
 </nav>

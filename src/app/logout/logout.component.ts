@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private authService:AuthService,private router:Router) { }
+  constructor(private authService:AuthService,private router:Router) {
+    this.authService.logout();
+   }
 
   ngOnInit(): void {
   }
@@ -18,9 +20,9 @@ export class LogoutComponent implements OnInit {
 
   
   loginAgain(){
-    this.router.navigate(['login']);
     this.authService.logout();
     console.log("logout successfull");
+    this.router.navigate(['login']);
   }
 
 }
