@@ -26,12 +26,14 @@ export class UsersComponent implements OnInit {
 
   showUsers(){
     this.isgettingUsers = true;
+    let httpOptionsWithAuth = {
+      headers: new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Basic '+ localStorage.getItem('login_info')
+    })}
 
-    this.http.get<{[key:string] : User}>('https://smartbloggers-7101f.firebaseio.com/users.json',
-    {
-      headers: new HttpHeaders({ 'Custom-Header' : 'Hello' }),
-      params: new HttpParams().set('print','pretty')
-    })
+    this.http.get<{[key:string] : User}>('/SmartBloggers/rest/users',httpOptionsWithAuth)
     .pipe(
       map(responseData =>{
         const userArray: User[]=[];

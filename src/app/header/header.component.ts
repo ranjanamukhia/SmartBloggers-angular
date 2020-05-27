@@ -11,6 +11,9 @@ import { AuthService } from '../auth.service';
 })
 export class HeaderComponent implements OnInit {
   currentUser: boolean;
+  isAuth = false;
+  authSubscription: Subscription;
+
   
   constructor( private loginFormComponent: LoginFormComponent,private authService:AuthService) {
 
@@ -29,14 +32,25 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(){
+    this.authSubscription = this.authService.authChange.subscribe(authStatus => {
+      this.isAuth = authStatus;
+     this.currentUser = true;
+    });
    
   }
 
-  setCurrentUser(){
-    this.authService.currentUserEmitter.next(true);
-    console.log("inside setCurrentUser()");
-   
+  ngOnDestroy(){
+    this.authSubscription.unsubscribe();  
+    this.currentUser = false;
+  }
+
+  onLogout(){
     
     
+    this.isAuth = false;
+    this.currentUser = false;
+    this.authService.logout();
+    console.log("logout successfull");
+    console.log("isAuth"+ this.isAuth+"currentUser afte logout"+this.currentUser);
   }
 }
