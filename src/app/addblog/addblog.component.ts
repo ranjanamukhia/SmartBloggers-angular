@@ -22,6 +22,8 @@ export class AddblogComponent implements OnInit {
   submitted = false;
   error= null;
   constructor(private http : HttpClient) { }
+  httpOptionsWithOutAuth = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json','Accept': 'application/json'})};
 
   ngOnInit(): void {
   }
@@ -42,8 +44,10 @@ export class AddblogComponent implements OnInit {
     this.blog.content = this.blogForm.value.description;
 
     console.log(this.blog)
+     
+  
 
-    this.http.post<Blog>('https://smartbloggers-7101f.firebaseio.com/blogs.json',this.blog)
+    return this.http.post<Blog>('/SmartBloggers/rest/blogs/',this.blog,this.httpOptionsWithOutAuth)
     .subscribe(responseData =>{
       console.log(responseData);
     },error =>{
