@@ -11,6 +11,7 @@ import { AuthService } from '../auth.service';
 })
 export class HeaderComponent implements OnInit {
   currentUser: boolean;
+  actualCurrentUser: string
   isAuth = false;
   authSubscription: Subscription;
 
@@ -35,6 +36,8 @@ export class HeaderComponent implements OnInit {
     this.authSubscription = this.authService.authChange.subscribe(authStatus => {
       this.isAuth = authStatus;
      this.currentUser = true;
+     this.actualCurrentUser = localStorage.getItem('currentuser');
+     console.log("the actual Current user in header " +this.actualCurrentUser)
     });
    
   }

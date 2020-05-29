@@ -51,7 +51,7 @@ export class AddblogComponent implements OnInit {
       headers: new HttpHeaders({ 
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Basic'+ btoa(this.user.userName + ":" + this.user.password)
+      'Authorization': 'Basic '+ localStorage.getItem('login_info')
     })};
    
     

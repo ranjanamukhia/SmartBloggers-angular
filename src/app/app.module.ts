@@ -22,6 +22,7 @@ import { AuthGuardService } from './auth.guard.service';
 import { AuthService } from './auth.service';
 import { LogoutComponent } from './logout/logout.component';
 import { HomeComponent } from './home/home.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HomeComponent } from './home/home.component';
     ShowBlogsComponent,
     AddblogComponent,
     LogoutComponent,
-    HomeComponent
+    HomeComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

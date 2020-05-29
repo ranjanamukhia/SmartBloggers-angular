@@ -9,6 +9,6 @@
   <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/users" *ngIf="isAuth && currentUser">Users</a> 
   <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/blog" *ngIf="isAuth && currentUser">AddBlog</a> 
   <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/showblogs" *ngIf="isAuth && currentUser">All Blogs</a> 
-  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/#" *ngIf="isAuth && currentUser">{{ currentUser }}</a> 
+  <a class="btn btn-primary" routerLinkActive="active" role="button" routerLink="/#" *ngIf="isAuth && currentUser">{{ actualCurrentUser }}</a> 
   <a class="btn btn-primary" routerLinkActive="active" role="button" style="cursor:pointer" (click)="onLogout()" *ngIf="isAuth && currentUser">Logout</a>
 </nav>
