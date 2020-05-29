@@ -1,7 +1,7 @@
 <div style="clear: left"></div>
 	<div style="clear: left"></div>
 	<div class="well well-lg" style="width: 90%">
-	<form (ngSubmit)="onSubmit()" #f="ngForm">
+	<form (ngSubmit)="onSubmit(f)" #f="ngForm">
 		
 
 			<div class="form-group">
@@ -54,7 +54,7 @@
 					<p>Blog name : {{ blog.blogName }}</p>
 					<p>Blog Tag : {{ blog.tag }}</p>
 					<p>Blog Content : {{ blog.content }}</p>
-					<p>Blog username : {{ blog.userName }}</p>
+					
 				</div>
 			</div>
 		</div>

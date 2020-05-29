@@ -17,7 +17,7 @@ import { Observable, Subscription } from 'rxjs';
 export class LoginFormComponent  implements OnDestroy {
   
   isLoggedIn: boolean = false;
- // @Output() loginEvent = new EventEmitter();
+  @Output() loginSuccessEvent = new EventEmitter<void>();
   
   constructor(private http:HttpClient,
     private cookieService:CookieService,
@@ -50,25 +50,27 @@ export class LoginFormComponent  implements OnDestroy {
 
 
   login(user:User) {
-
+   
     console.log(user);
     console.log("user in login-form-component");
-    localStorage.setItem('current_user',user.userName );
+  
     this.authObs = this.authService.login(user);
     this.authObs.subscribe(
       data => {
        // this.loginEvent.emit(true);
         console.log("login Successfull");
+        console.log("data after subcribing in logincomponent "+ data);
         let loginEvent = false;
         let activatedSub: Subscription;
         activatedSub = this.authService.currentUserEmitter.subscribe(didActivate => {
           loginEvent = didActivate
           console.log(loginEvent + " value of loginEvent after activated sub in logincomponenet"); })
           console.log(activatedSub+" value of activatedsubinside data => in login in loginform component");
+          this.loginSuccessEvent.emit();
         
           
-        localStorage.setItem('login_info', btoa(user.userName + ":" + user.password));
-        //localStorage.setItem('current_user',user.userName );
+        
+        
      this.router.navigate(['showblogs']);
       }
     ),

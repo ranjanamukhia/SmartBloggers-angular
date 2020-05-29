@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 
 
 
+
 export interface AuthResponseData{
   userName :string,
   fullName :string,
@@ -22,11 +23,13 @@ export interface AuthResponseData{
 export class AuthService {
 
   currentUserEmitter = new Subject<boolean>();
+  currentUserIsSet = new Subject<User>();
   
   error = null;
   private isAuthenticated = false;
   authChange = new Subject<boolean>();
   private mongoSubs: Subscription[] =[];
+  private currentUser: User;
 
   constructor(private http: HttpClient,
               private cookieService:CookieService,
@@ -60,15 +63,22 @@ export class AuthService {
      return this.http.get<User>('/SmartBloggers/rest/users/'+user.userName,httpOptionsWithAuth)
       .pipe(map(user => {
        
-
+        console.log("user in AuthService "+user);
      
        // localStorage.setItem('current_user',user.userName );
        this.isAuthenticated = true;
        this.authChange.next(true);
       
+       
+        this.currentUser = user;
+        this.currentUserIsSet.next({...this.currentUser});
+        console.log("this.currentUser in authService "+this.currentUser)
         return user;
       }));
   }
+
+  
+
 
   
   cancelSubscriptions(){
