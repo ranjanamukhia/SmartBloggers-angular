@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, tap, map } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { Blog } from './blog';
 
 
 
@@ -98,4 +99,6 @@ export class AuthService {
   isAuth() {
     return this.isAuthenticated;
   }
+
+ 
 }

@@ -41,6 +41,7 @@ export class AddblogComponent implements OnInit {
         this.user.password = user.password;
       }
     });
+    
   }
 
    
@@ -59,7 +60,10 @@ export class AddblogComponent implements OnInit {
     this.blog.tag = this.blogForm.value.tag;
     this.blog.blogName = this.blogForm.value.title;
     this.blog.content = this.blogForm.value.description;  
+    this.blog.userName = localStorage.getItem('currentuser')
+    
 
+    console.log("userName or current user in addblog component "+this.blog.userName);
     console.log(this.blog);
     console.log("this.user in add blog "+this.user);
     

@@ -70,6 +70,7 @@ export class LoginFormComponent  implements OnDestroy {
           localStorage.setItem('login_info', btoa(user.userName + ":" + user.password));
           localStorage.setItem('currentuser',user.userName);
           
+          
         
         
      this.router.navigate(['showblogs']);

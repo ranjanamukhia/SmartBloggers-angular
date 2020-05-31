@@ -1,1 +1,35 @@
-<p>account works!</p>
+<div class="card" style="width: 18rem;">
+    <h3>All Blogs</h3>
+  <button type="button" class="btn btn-primary btn" (click) = showUserInfo()>Click to see User's Info</button>
+  
+  <div class="card-body">
+  <ul >
+    <li class="list-group-item" >
+        
+         <p><b>Tag :</b> {{ blog.tag }}</p>
+          <p><b>Blog Name :</b> {{ blog.blogName }}</p>
+          <p><b>Description :</b> {{ blog.content }}</p>
+  
+  
+      </li>
+      
+    </ul>
+    
+    
+  </div>
+  <!-- <div class="card-body">
+    <ul >
+      <li class="list-group-item" >
+          
+           <p><b>User Name :</b> {{ user.userName }}</p>
+            <p><b>User FullName :</b> {{ user.fullName }}</p>
+            <p><b>User Email Id :</b> {{ user.emailId }}</p>
+    
+    
+        </li>
+        
+      </ul>
+      
+      
+    </div> -->
+  </div>

@@ -8,6 +8,7 @@ import { ShowBlogsComponent } from './showblogs/showblogs.component';
 import { AddblogComponent } from './addblog/addblog.component';
 import { AuthGuardService } from './auth.guard.service'
 import { LogoutComponent } from './logout/logout.component';
+import { AccountComponent } from './account/account.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
     { path: 'users', component: UsersComponent },
     { path: 'blog', component: AddblogComponent },
     { path: 'logout', component: LogoutComponent },
+    { path: 'myaccount', component: AccountComponent },
     { path: '', redirectTo: 'register', pathMatch: 'full'}, 
 ];
 
