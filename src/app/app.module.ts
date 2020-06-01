@@ -24,6 +24,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './account/account.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,7 @@ import { AccountComponent } from './account/account.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers:[ CookieService,AuthGuardService,AuthService,LoginFormComponent],
+  providers:[ CookieService,AuthGuardService,AuthService,LoginFormComponent,HeaderComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

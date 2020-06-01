@@ -11,33 +11,24 @@ import { AuthService } from '../auth.service';
 })
 export class HeaderComponent implements OnInit {
   currentUser: boolean;
-  actualCurrentUser: string
+ actualCurrentUser: string
   isAuth = false;
   authSubscription: Subscription;
 
   
-  constructor( private loginFormComponent: LoginFormComponent,private authService:AuthService) {
-
-
-    
-    // if (localStorage.getItem('current_user') != "null") {
-    //   this.currentUser=localStorage.getItem('current_user');
-    // }
-    
-
-    // console.log(this.currentUser+" current user in header constructor");
-
-  //loginFormComponent.loginEvent.subscribe(this.setCurrentUser)
-
-
-  }
+  constructor( private loginFormComponent: LoginFormComponent,private authService:AuthService) {}
+  
+  
 
   ngOnInit(){
+ 
     this.authSubscription = this.authService.authChange.subscribe(authStatus => {
       this.isAuth = authStatus;
      this.currentUser = true;
      this.actualCurrentUser = localStorage.getItem('currentuser');
-     console.log("the actual Current user in header " +this.actualCurrentUser)
+     
+     console.log("the actual Current user in header " +this.actualCurrentUser);
+
     });
    
   }
@@ -45,6 +36,7 @@ export class HeaderComponent implements OnInit {
   ngOnDestroy(){
     this.authSubscription.unsubscribe();  
     this.currentUser = false;
+    console.log(" localStorage.getItem('current_user') value inside header's ngdestroy"+ localStorage.getItem('current_user'))
   }
 
   onLogout(){
@@ -53,7 +45,10 @@ export class HeaderComponent implements OnInit {
     this.isAuth = false;
     this.currentUser = false;
     this.authService.logout();
+    
+    localStorage.removeItem('current_user');
     console.log("logout successfull");
-    console.log("isAuth"+ this.isAuth+"currentUser afte logout"+this.currentUser);
+    console.log(" localStorage.getItem('current_user') value after logout "+ localStorage.getItem('current_user'))
+    console.log("isAuth"+ this.isAuth+"currentUser after logout "+this.currentUser+this.actualCurrentUser);
   }
 }

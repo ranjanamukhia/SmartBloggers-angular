@@ -92,6 +92,7 @@ export class AuthService {
     this.isAuthenticated = false;
     this.router.navigate(['/login']);
     localStorage.removeItem('current_user');
+    console.log(" localStorage.getItem('current_user') value inside authservice logout  "+ localStorage.getItem('current_user'))
     localStorage.removeItem('login_info');
    
   }

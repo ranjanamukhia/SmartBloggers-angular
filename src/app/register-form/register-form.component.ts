@@ -14,7 +14,7 @@ import { AuthService, AuthResponseData } from '../auth.service';
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent implements OnInit {
-  user = new User('','','','','')
+  user = new User('','','','')
   users : User[]
   error = null;
   isLoading = false;

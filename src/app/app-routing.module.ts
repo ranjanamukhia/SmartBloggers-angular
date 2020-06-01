@@ -43,7 +43,7 @@ const routes: Routes = [
     { path: 'blog', component: AddblogComponent },
     { path: 'logout', component: LogoutComponent },
     { path: 'myaccount', component: AccountComponent },
-    { path: '', redirectTo: 'register', pathMatch: 'full'}, 
+    { path: '', redirectTo: 'login', pathMatch: 'full'}, 
 ];
 
 

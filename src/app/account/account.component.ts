@@ -13,6 +13,9 @@ import { catchError, retry, map, tap} from 'rxjs/operators';
 export class AccountComponent implements OnInit {
   user: User;
   blog: Blog;
+  blogss :Blog[];
+  loadedBlogs:Blog[] =[]
+  loadedUsers:User[] = []
   error= null;
    userName ;
 
@@ -37,29 +40,42 @@ showUserInfo(){
    
    
 
-    return this.http.get<Blog>('/SmartBloggers/rest/blogs/users/'+this.userName,httpOptionsWithAuth).subscribe(blog => {
+    // return this.http.get<Blog>('/SmartBloggers/rest/blogs/users/'+this.userName,httpOptionsWithAuth).subscribe(blogs => {
        
-      console.log("blog in myAccountInfo "+blog);
+    //   console.log("blog in myAccountInfo "+blogs);
+    //  this.blogs.push(blogs);
       
   
-      return blog;
-    })
+    //   return this.blogs;
+    // })
   
       
-      // return this.http.get<Blog>('/SmartBloggers/rest/blogs/users/'+this.userName,httpOptionsWithAuth)
-      // .pipe(
-      //   map(responseData =>{
-      //    console.log("responseData "+responseData)
-         
-      //   })
-      // ).subscribe(blog=>{
-      //  console.log("blog in account subscribe "+ blog)
-      //   return blog
-      // },error =>{
-       
-      //   this.error = error.message;
-      //   console.log(error);
-      // });
+      return this.http.get<Blog>('/SmartBloggers/rest/blogs/users/'+this.userName,httpOptionsWithAuth)
+      .pipe(
+        map(responseData =>{
+          const blogArray: Blog[]=[];
+          const userArray: Blog[]=[];
+          for (const key in responseData){
+            if(responseData.hasOwnProperty(key)){
+              blogArray.push({...responseData[key], blogId : key});
+            }
+          }
+          return blogArray;
+
+          
+        })
+      ).subscribe(blogs=>{
+      
+        this.loadedBlogs = blogs
+        console.log(blogs);
+      },error =>{
+        
+        this.error = error.message;
+        console.log(error);
+      });
+
+      
+   
     
 
     

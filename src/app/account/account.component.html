@@ -1,10 +1,10 @@
 <div class="card" style="width: 18rem;">
-    <h3>All Blogs</h3>
-  <button type="button" class="btn btn-primary btn" (click) = showUserInfo()>Click to see User's Info</button>
+    <h3>{{userName}}'s Blogs</h3>
+  <button type="button" class="btn btn-primary btn" (click) = showUserInfo()>Click to see {{userName}}'s Blogs</button>
   
   <div class="card-body">
   <ul >
-    <li class="list-group-item" >
+    <li class="list-group-item" *ngFor="let blog of loadedBlogs">
         
          <p><b>Tag :</b> {{ blog.tag }}</p>
           <p><b>Blog Name :</b> {{ blog.blogName }}</p>
