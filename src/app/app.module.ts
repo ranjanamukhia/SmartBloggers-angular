@@ -45,7 +45,7 @@ import { AccountComponent } from './account/account.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers:[ CookieService,AuthGuardService,AuthService,LoginFormComponent,HeaderComponent],
+  providers:[ CookieService,AuthGuardService,AuthService,LoginFormComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
