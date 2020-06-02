@@ -62,19 +62,29 @@ export class AuthService {
         'Authorization': 'Basic'+ btoa(user.userName + ":" + user.password)
       })};
      return this.http.get<User>('/SmartBloggers/rest/users/'+user.userName,httpOptionsWithAuth)
-      .pipe(map(user => {
-       
+      .pipe(map(
+        user => {
+
+          if(user === null)
+          {
+            return
+          }
+          else{
+        localStorage.setItem('currentuser',user.userName);
         console.log("user in AuthService "+user);
      
-       // localStorage.setItem('current_user',user.userName );
+       console.log("local storage current user value in auth service login "+localStorage.getItem('currentuser'));
        this.isAuthenticated = true;
        this.authChange.next(true);
       
        
-        this.currentUser = user;
+       // this.currentUser = user;
+        
+
         this.currentUserIsSet.next({...this.currentUser});
         console.log("this.currentUser in authService "+this.currentUser)
         return user;
+          }
       }));
   }
 
@@ -90,11 +100,11 @@ export class AuthService {
     // remove user from local storage to log user out
     
     this.isAuthenticated = false;
-    this.router.navigate(['/login']);
+   
     localStorage.removeItem('current_user');
     console.log(" localStorage.getItem('current_user') value inside authservice logout  "+ localStorage.getItem('current_user'))
     localStorage.removeItem('login_info');
-   
+    this.router.navigate(['/login']);
   }
 
   isAuth() {

@@ -45,10 +45,10 @@ export class HeaderComponent implements OnInit {
     this.isAuth = false;
     this.currentUser = false;
     this.authService.logout();
-    
+    this.actualCurrentUser = null;
     localStorage.removeItem('current_user');
     console.log("logout successfull");
     console.log(" localStorage.getItem('current_user') value after logout "+ localStorage.getItem('current_user'))
-    console.log("isAuth"+ this.isAuth+"currentUser after logout "+this.currentUser+this.actualCurrentUser);
+    console.log("isAuth value in logout in heaer comp. "+ this.isAuth+"currentUser after logout in header comp. "+this.currentUser+" "+this.actualCurrentUser);
   }
 }

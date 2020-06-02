@@ -68,7 +68,8 @@ export class LoginFormComponent  implements OnDestroy {
           console.log(activatedSub+" value of activatedsubinside data => in login in loginform component");
          
           localStorage.setItem('login_info', btoa(user.userName + ":" + user.password));
-          localStorage.setItem('currentuser',user.userName);
+          //localStorage.setItem('currentuser',user.userName);
+          console.log("local storage current user value in login "+localStorage.getItem('currentuser'));
           this.loginSuccessEvent.emit();
           
           
